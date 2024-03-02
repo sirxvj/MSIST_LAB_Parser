@@ -21,6 +21,8 @@ sdist/
 var/
 wheels/
 share/python-wheels/
+idea/
+.idea/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -143,6 +145,11 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+.idea/misc.xml
+
+.idea/workspace.xml
+
+
 # Pyre type checker
 .pyre/
 
@@ -152,7 +159,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-.idea
+.idea/
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
