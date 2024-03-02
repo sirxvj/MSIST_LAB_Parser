@@ -8,5 +8,5 @@ with open("Example.rb", "r") as file:
     code = file.read()
 
 #parse_operator(code)
-for key,val in parse_operands(code).items():
-    print(key,':', val)
+for item in parse_operands(code).items():
+    print(item)
