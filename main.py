@@ -62,8 +62,14 @@ class MainWindow(QMainWindow):
     def parse_text(self):
         text = self.text_edit.toPlainText()
         operands_result = parse_operands(text)
+        operators_result= parse_operator(text) 
+
+     
         for item in operands_result.items():
             self.operands_label.setText(self.operands_label.text() + str(item) + "\n")
+
+        for item in operators_result.items():
+            self.operators_label.setText(self.operators_label.text() + str(item) + "\n")    
 
 
 
