@@ -28,4 +28,13 @@ def parse_operands(code_text):
                 elements[el2]+=1
             else:
                 elements[el2]=1
-    return elements
+
+
+    total_count = 0
+
+    for key in elements:
+      total_count += elements[key]
+
+
+
+    return elements, total_count

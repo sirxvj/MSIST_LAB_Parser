@@ -122,4 +122,11 @@ def parse_operator(code_text):
         else:
             elements[match] += 1
 
-    return elements
+    total_count = 0
+
+    for key in elements:
+      total_count += elements[key]
+
+
+
+    return elements, total_count
