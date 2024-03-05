@@ -1,30 +1,27 @@
-
-# #print('и операторы и операнды будем делать в своих файликах что бы не было конфликтов и отдельно кути добавим')
-#
-# code = None
-#
-# with open("Example.rb", "r") as file:
-#     code = file.read()
-#
-# #parse_operator(code)
-# for item in parse_operands(code).items():
-#     print(item)
-#
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QTextEdit, QPushButton, QWidget, QLabel, QHBoxLayout
+from PyQt6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QVBoxLayout,
+    QTextEdit,
+    QPushButton,
+    QWidget,
+    QLabel,
+    QHBoxLayout,
+)
 from operands import parse_operands
 from operators import parse_operator
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("LR1(Dovnar & Beckman)")
-        self.setMinimumWidth(1600)
-        self.setMinimumHeight(1200)
+        self.setWindowTitle("Ruby Parser")
+        self.setMinimumWidth(1000)
+        self.setMinimumHeight(800)
         self.text_edit = QTextEdit()
         self.text_edit.resize(100, 10)
-
 
         ParseButton = QPushButton("Parse code")
         ParseButton.clicked.connect(self.parse_text)
@@ -32,12 +29,8 @@ class MainWindow(QMainWindow):
         DeleteButton = QPushButton("Delete code")
         DeleteButton.clicked.connect(self.delete_text)
 
-        # для вывода результатов
-        self.operands_label = QLabel()
-        self.operators_label = QLabel()
-
-        self.operands_label.setText("operands")
-        self.operators_label.setText('operators')
+        self.operands_label = QLabel("Operands")
+        self.operators_label = QLabel("Operators")
 
         container = QWidget()
 
@@ -52,7 +45,6 @@ class MainWindow(QMainWindow):
 
         results_layout.addWidget(self.operands_label)
         results_layout.addWidget(self.operators_label)
-        #layout.addWidget(self.operands_label)
 
         central_widget = QWidget()
         central_widget.setLayout(layout)
@@ -62,21 +54,27 @@ class MainWindow(QMainWindow):
     def parse_text(self):
         text = self.text_edit.toPlainText()
         operands_result = parse_operands(text)
-        operators_result= parse_operator(text) 
+        operators_result = parse_operator(text)
 
-     
+        self.operands_label.clear()
+        self.operators_label.clear()
+
+        self.operands_label.setText("Operands\n")
+        self.operators_label.setText("Operators\n")
+
         for item in operands_result.items():
             self.operands_label.setText(self.operands_label.text() + str(item) + "\n")
 
         for item in operators_result.items():
-            self.operators_label.setText(self.operators_label.text() + str(item) + "\n")    
-
-
+            self.operators_label.setText(self.operators_label.text() + str(item) + "\n")
 
     def delete_text(self):
         self.text_edit.clear()
         self.operands_label.clear()
+        self.operands_label.setText("Operands\n")
+
         self.operators_label.clear()
+        self.operators_label.setText("Operators\n")
 
 
 if __name__ == "__main__":
