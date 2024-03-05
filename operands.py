@@ -5,8 +5,8 @@ def parse_operands(code_text):
     keywords = ["BEGIN", "END", "alias", "and", "begin", "break", "case", "class", "def", "defined?", "do", "else", "elsif", "end", "ensure", "false", "for", "if", "in", "module", "next", "nil", "not", "or", "redo", "rescue", "retry", "return", "self", "super", "then", "true", "undef", "unless", "until", "when", "while", "yield"]
     match = re.findall(r'[\w._]+\s*[-+=<>/*]', code_text)
     match += re.findall(r'[-<>+=/*]\s*[\w._]+[\s.]', code_text)
-    match += re.findall(r'[(\[][\w._]+[-+<>=/*,)\]]', code_text)
-    match += re.findall(r'[-<>+=/*,]\s*[\w._]+[)\]]', code_text)
+    match += re.findall(r'[({\[,-<>+=/*]\s*[\w._]+\s*[-+<>=/*,)\]}]', code_text)
+    match += re.findall(r'[-<>+=/*,]\s*[\w._]+\s*[-<>+=/*,)\]}]', code_text)
     match += re.findall(r'return\s*[\w._]+\s', code_text)
     match += re.findall(r'if\s+[\w._]+\?\s', code_text)
 
